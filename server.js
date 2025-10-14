@@ -11,19 +11,19 @@ const path = require('path');
 
 
 // Serve static frontend files (like chatboty.html, CSS, JS, etc.)
-app.use(express.static(path.join(__dirname)));
-
-// Serve index page when visiting root
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'chatboty.html')); // or index.html if that's your main file
-});
-app.use(express.static(__dirname));
-
-
-
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(cors());
+
+// ✅ Serve static files (CSS, JS, images, etc.)
+app.use(express.static(__dirname));
+
+// ✅ Serve main HTML page when visiting "/"
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'chatboty.html')); // <-- make sure this is your main file
+});
+
+
 
 // Session middleware
 app.use(session({
