@@ -32,63 +32,63 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // User Authentication
-  async function handleLogin(event) {
-    event.preventDefault(); // Prevent form submission
-    
-    const username = document.getElementById("login-username").value;
-    const password = document.getElementById("login-password").value;
+async function handleLogin(event) {
+  event.preventDefault(); // Prevent form submission
 
-    try {
-      const response = await fetch('http://localhost:3000/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-      });
-      
-      const data = await response.json();
-      
-      if (data.success) {
-        currentUserId = data.userId;
-        localStorage.setItem('user_id', data.userId);
-        loginOverlay.style.display = "none";
-        blurWrapper.classList.add("clear");
-        initializeAllChats();
-      } else {
-        alert("Invalid credentials.");
-      }
-    } catch (error) {
-      console.error('Login failed:', error);
-      alert("Login failed. Please try again.");
+  const username = document.getElementById("login-username").value;
+  const password = document.getElementById("login-password").value;
+
+  try {
+    const response = await fetch('/login', {   // ✅ removed localhost
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      currentUserId = data.userId;
+      localStorage.setItem('user_id', data.userId);
+      loginOverlay.style.display = "none";
+      blurWrapper.classList.add("clear");
+      initializeAllChats();
+    } else {
+      alert("Invalid credentials.");
     }
+  } catch (error) {
+    console.error('Login failed:', error);
+    alert("Login failed. Please try again.");
   }
+}
 
-  async function handleSignup(event) {
-    event.preventDefault();
-    
-    const username = document.getElementById("signup-username").value;
-    const email = document.getElementById("signup-email").value;
-    const password = document.getElementById("signup-password").value;
+async function handleSignup(event) {
+  event.preventDefault();
 
-    try {
-      const response = await fetch('http://localhost:3000/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password })
-      });
-      
-      const data = await response.json();
-      
-      if (data.success) {
-        alert(`Account created for ${username}. Now login.`);
-        showLogin();
-      } else {
-        alert(data.error || "Signup failed. Please try again.");
-      }
-    } catch (error) {
-      console.error('Signup failed:', error);
-      alert("Signup failed. Please try again.");
+  const username = document.getElementById("signup-username").value;
+  const email = document.getElementById("signup-email").value;
+  const password = document.getElementById("signup-password").value;
+
+  try {
+    const response = await fetch('/signup', {   // ✅ removed localhost
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, email, password })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      alert(`Account created for ${username}. Now login.`);
+      showLogin();
+    } else {
+      alert(data.error || "Signup failed. Please try again.");
     }
+  } catch (error) {
+    console.error('Signup failed:', error);
+    alert("Signup failed. Please try again.");
   }
+}
 
   // Initialize all chat interfaces
   function initializeAllChats() {
