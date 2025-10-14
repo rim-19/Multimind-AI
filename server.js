@@ -6,12 +6,9 @@ const db = require("./db");
 const session = require("express-session"); // Added session middleware
 const app = express();
 const port = 3000;
- const multer = require("multer");
-const fs = require("fs");
-const pdfParse = require("pdf-parse");
-const mammoth = require("mammoth");
 
-const upload = multer({ dest: "uploads/" });
+
+
 
 
 
@@ -267,49 +264,7 @@ app.get("/api/chat/history/:userId/:domain", async (req, res) => {
   }
 });
 
- 
-app.post("/upload", upload.single("file"), async (req, res) => {
-  const file = req.file;
-  const domain = req.body.domain || 'doc';
 
-  if (!file) {
-    return res.status(400).json({ error: "No file uploaded" });
-  }
-
-  try {
-    let content = "";
-
-    if (file.mimetype === "application/pdf") {
-      const dataBuffer = fs.readFileSync(file.path);
-      const data = await pdfParse(dataBuffer);
-      content = data.text;
-    } else if (file.mimetype === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-      const data = await mammoth.extractRawText({ path: file.path });
-      content = data.value;
-    } else {
-      return res.status(400).json({ error: "Unsupported file type" });
-    }
-
-    // Send to Gemini model
-    const prompt = `${models[domain]?.prompt || ""}\n\nPlease analyze the following document:\n${content}`;
-
-    const result = await genAI
-      .getGenerativeModel({ model: "gemini-pro" })
-      .generateContent(prompt);
-
-    const response = await result.response;
-    const text = response.text();
-
-    // Cleanup temp file
-    fs.unlinkSync(file.path);
-
-    res.json({ analysis: text });
-
-  } catch (error) {
-    console.error("Error analyzing file:", error);
-    res.status(500).json({ error: "Error analyzing file" });
-  }
-});
 
 
 
