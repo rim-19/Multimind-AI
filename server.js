@@ -11,13 +11,13 @@ const path = require('path');
 
 
 // Serve static frontend files (like chatboty.html, CSS, JS, etc.)
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname)));
 
 // Serve index page when visiting root
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'chatboty.html')); // or index.html if that's your main file
 });
-
+app.use(express.static(__dirname));
 
 
 
