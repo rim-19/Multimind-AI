@@ -7,9 +7,16 @@ const session = require("express-session"); // Added session middleware
 const app = express();
 const port = 3000;
 
+const path = require('path');
 
 
+// Serve static frontend files (like chatboty.html, CSS, JS, etc.)
+app.use(express.static(path.join(__dirname)));
 
+// Serve index page when visiting root
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'chatboty.html')); // or index.html if that's your main file
+});
 
 
 app.use(express.json({ limit: "10mb" }));
