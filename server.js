@@ -144,7 +144,16 @@ const models = {
 
 
 
-// Models configuration remains the same...
+app.get("/test-db", async (req, res) => {
+  try {
+    const [rows] = await db.execute("SELECT 1 + 1 AS result");
+    res.send("✅ DB Connected! Result: " + rows[0].result);
+  } catch (err) {
+    console.error("❌ DB Connection Error:", err);
+    res.status(500).send("❌ Database not connected");
+  }
+});
+
 
 // Fixed saveMessage function
 async function saveMessage(userId, message, sender, bot_topic) {
