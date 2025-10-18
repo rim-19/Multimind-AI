@@ -1031,3 +1031,9 @@ font-size: 1.8rem;
     width: 100% !important;
   }
 }
+
+.g_id_signin {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
