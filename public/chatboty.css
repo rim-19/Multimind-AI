@@ -1,4 +1,4 @@
-/* Global Styles  rimm*/
+/* Global Styles */
 :root {
   --sidebar-width: 280px;
   --header-height: 60px;
@@ -18,13 +18,8 @@ body {
   background: #f0f2f5;
   height: 100vh;
 }
-img, video {
-  max-width: 100%;
-  height: auto;
-}
 
 /* App Layout */
-
 
 /* Sidebar Styles */
 /*.sidebar {
@@ -178,8 +173,6 @@ img, video {
   /* Add horizontal padding (0 for top/bottom, 20px for left/right) */
   /* You might also want some padding-top if your header is too close */
   padding-top: 15px;
-  -webkit-overflow-scrolling: touch;
-  overflow-wrap: anywhere;
 }
 
 .chat-input {
@@ -192,7 +185,7 @@ img, video {
   width: 70%;
   height: 20%;
   margin: auto;
-  transition: all 0.5s ease;
+  transition: all 0.5 ease;
 }
 .chat-input:focus {
   border-color: hotpink;
@@ -223,7 +216,6 @@ img, video {
   background: #e623ab;
   transform: translateY(-3px);
 } 
-
 
 
 
@@ -493,7 +485,6 @@ img, video {
   }
 } */
 
-
 .sidebar {
   position: fixed;
   left: 0;
@@ -536,7 +527,6 @@ img, video {
   transition: margin-left 0.3s ease;
   
  }
-
 
 /* When sidebar is hidden */
 .sidebar.hidden {
@@ -604,7 +594,6 @@ img, video {
   font-weight: 500;
 }
 
-
 .app-container {
 
   width: 100%;
@@ -612,7 +601,6 @@ img, video {
   height: 100%;
   background-color: white;
 }
-
 
 .overlay {
   position: absolute;
@@ -783,7 +771,6 @@ img, video {
   font-style: italic;
 }
 
-
  .phrase{
  font-family:  "Segoe UI", Tahoma, Geneva, Verdana, sans-serif ;
  
@@ -799,7 +786,6 @@ font-size: 1.8rem;
   margin-bottom: 1.2rem;
   padding: 0 10px;
 }
-
 
 
 .history-panel {
@@ -831,134 +817,7 @@ font-size: 1.8rem;
   background: #ffccdd;
 }
 
-
 /* ===============================
    📱 FULL MOBILE RESPONSIVENESS
    =============================== */
 
-@media (max-width: 768px) {
-
-  /* Sidebar should slide in/out fully on mobile */
-  .sidebar {
-    position: fixed;
-    width: 220px;
-    height: 100vh;
-    transform: translateX(-100%);
-    z-index: 999;
-  }
-
-  .sidebar.active {
-    transform: translateX(0);
-  }
-
-  .sidebar-toggle {
-    top: 10px;
-    left: 10px;
-    width: 35px;
-    height: 35px;
-  }
-
-  /* Main content full width */
-  .main-content {
-    margin-left: 0 !important;
-    width: 100%;
-    padding: 10px;
-  }
-
-  /* Chat container spacing */
-  .chat-container {
-    border-radius: 0;
-    height: calc(100vh - 60px);
-  }
-
-  .chat-header {
-    font-size: 1rem;
-    padding: 10px;
-  }
-
-  .chat-messages {
-    padding: 0.8rem;
-    max-width: 100%;
-  }
-
-  /* Input area stacked */
-  .chat-input {
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    padding: 1rem;
-    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
-    gap: 0.5rem;
-    border-radius: 12px;
-  }
-
-  .chat-input input {
-    font-size: 1rem;
-    padding: 10px;
-    height: auto;
-  }
-
-  .chat-input button {
-    width: 100%;
-    height: 45px;
-  }
-
-  /* Message bubbles adapt */
-  .message {
-    max-width: 90%;
-    font-size: 15px;
-  }
-
-  /* Auth box */
-  .auth-container {
-    flex-direction: column;
-    width: 90%;
-    height: auto;
-  }
-
-  .video-box {
-    display: none;
-  }
-
-  .auth-box {
-    width: 100%;
-    padding: 25px;
-  }
-
-  .auth-box h2 {
-    font-size: 1.3rem;
-  }
-
-  .auth-box input,
-  .auth-box button {
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .phrase {
-    font-size: 1.3rem;
-    line-height: 1.2;
-  }
-
-  .chat-input input {
-    padding: 8px;
-    font-size: 0.9rem;
-    height: auto;
-  }
-
-  .chat-input button {
-    font-size: 0.9rem;
-  }
-
-  .message {
-    font-size: 13px;
-    padding: 12px;
-  }
-
-  .domain-btn {
-    font-size: 0.8rem;
-    padding: 10px;
-  }
-}
