@@ -1,4 +1,4 @@
-/* Global Styles */
+/* Global Styles  rimm*/
 :root {
   --sidebar-width: 280px;
   --header-height: 60px;
@@ -17,6 +17,10 @@
 body {
   background: #f0f2f5;
   height: 100vh;
+}
+img, video {
+  max-width: 100%;
+  height: auto;
 }
 
 /* App Layout */
@@ -174,6 +178,8 @@ body {
   /* Add horizontal padding (0 for top/bottom, 20px for left/right) */
   /* You might also want some padding-top if your header is too close */
   padding-top: 15px;
+  -webkit-overflow-scrolling: touch;
+  overflow-wrap: anywhere;
 }
 
 .chat-input {
@@ -186,7 +192,7 @@ body {
   width: 70%;
   height: 20%;
   margin: auto;
-  transition: all 0.5 ease;
+  transition: all 0.5s ease;
 }
 .chat-input:focus {
   border-color: hotpink;
@@ -855,6 +861,7 @@ font-size: 1.8rem;
   /* Main content full width */
   .main-content {
     margin-left: 0 !important;
+    width: 100%;
     padding: 10px;
   }
 
@@ -878,7 +885,9 @@ font-size: 1.8rem;
   .chat-input {
     flex-direction: column;
     width: 100%;
+    height: auto;
     padding: 1rem;
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
     gap: 0.5rem;
     border-radius: 12px;
   }
@@ -886,6 +895,7 @@ font-size: 1.8rem;
   .chat-input input {
     font-size: 1rem;
     padding: 10px;
+    height: auto;
   }
 
   .chat-input button {
@@ -935,6 +945,7 @@ font-size: 1.8rem;
   .chat-input input {
     padding: 8px;
     font-size: 0.9rem;
+    height: auto;
   }
 
   .chat-input button {
