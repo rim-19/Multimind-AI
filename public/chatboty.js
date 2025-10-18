@@ -379,6 +379,42 @@ historyDomainList.querySelectorAll("li").forEach(item => {
  // Ensure you have <input id="fileInput" type="file" style="display:none">
 
 
+document.getElementById("pro-input5").addEventListener("change", async (event) => {
+  event.preventDefault(); // ⛔ prevent page reload
+
+  const file = event.target.files[0];
+  if (!file || currentChatDomain !== "analysis") return;
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("userId", currentUserId);
+  formData.append("domain", currentChatDomain);
+
+  const chatMessages = document.querySelector(`#${currentChatDomain} .chat-messages`);
+  if (!chatMessages) return;
+
+  try {
+    displayMessage("📄 Analyzing document...", "model", chatMessages);
+
+    const response = await fetch("http://localhost:3000/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data.response) {
+      displayMessage(`📄 Uploaded: ${file.name}`, "user", chatMessages);
+      displayMessage(data.response, "model", chatMessages);
+    } else {
+      displayMessage("❌ Failed to process the file.", "model", chatMessages);
+    }
+  } catch (error) {
+    console.error("Upload error:", error);
+    displayMessage("⚠️ Error uploading document.", "model", chatMessages);
+  }
+});
+
 
 
 });
