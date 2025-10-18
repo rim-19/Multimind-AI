@@ -1037,3 +1037,63 @@ font-size: 1.8rem;
   justify-content: center;
   margin-top: 10px;
 }
+
+
+
+
+/* ✅ FIX LOGIN OVERLAY RESPONSIVENESS WITHOUT BREAKING APP */
+@media (max-width: 900px) {
+  #login-overlay .auth-container {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  #login-overlay .auth-box {
+    width: 100%;
+    padding: 25px;
+    order: 1;
+  }
+
+  #login-overlay .video-box {
+    order: 2;
+    height: 200px;
+  }
+
+  #login-overlay .video-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #login-overlay .phrase {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  #login-overlay .auth-container {
+    width: 95%;
+  }
+
+  #login-overlay .video-box {
+    display: none; /* hide video for small screens */
+  }
+
+  #login-overlay .phrase {
+    font-size: 1.1rem;
+  }
+
+  #login-overlay .auth-box {
+    padding: 20px;
+  }
+
+  #login-overlay input,
+  #login-overlay button {
+    font-size: 0.9rem;
+  }
+}
