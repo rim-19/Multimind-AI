@@ -817,3 +817,217 @@ font-size: 1.8rem;
   background: #ffccdd;
 }
 
+
+
+
+
+
+
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  /* App Layout for Mobile */
+  .app-container {
+    flex-direction: column;
+  }
+  
+  /* Sidebar adjustments for mobile */
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    transform: none !important;
+    padding: 15px;
+  }
+  
+  .sidebar.hidden {
+    display: none;
+  }
+  
+  .sidebar:not(.hidden) {
+    display: flex;
+  }
+  
+  /* Main content adjustments */
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 15px;
+    height: auto;
+  }
+  
+  /* Menu sections as horizontal scroll on mobile */
+  .menu-section {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+  }
+  
+  .menu-section::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Domain buttons - compact for mobile */
+  .domain-btn {
+    flex: 0 0 auto;
+    width: 160px;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+  
+  /* Special buttons - full width on mobile */
+  .chathistory-btn,
+  .backtochat-btn {
+    width: 48%;
+  }
+  
+  .newchat-btn {
+    width: 100%;
+  }
+  
+  /* Chat interface mobile optimizations */
+  .chat-container {
+    border-radius: 8px;
+    height: calc(100vh - 200px);
+  }
+  
+  .chat-header {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .chat-messages {
+    padding: 0.8rem;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .message {
+    max-width: 85%;
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+  
+  .chat-input {
+    width: 95%;
+    height: 60px;
+    padding: 1rem;
+    margin: 10px auto;
+  }
+  
+  .chat-input input {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+  
+  /* Auth container mobile styles */
+  .auth-container {
+    width: 95%;
+    height: auto;
+    flex-direction: column;
+    margin: 20px;
+  }
+  
+  .auth-box {
+    padding: 30px 20px;
+  }
+  
+  .video-box {
+    height: 200px;
+  }
+  
+  /* Typography adjustments */
+  .sidebar-header h1 {
+    font-size: 1.3rem;
+  }
+  
+  .sidebar-header p {
+    font-size: 0.8rem;
+  }
+  
+  .phrase {
+    font-size: 1.4rem;
+    padding: 0 5px;
+  }
+  
+  /* Hide sidebar toggle on mobile when sidebar is visible */
+  .sidebar:not(.hidden) ~ .sidebar-toggle {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small devices */
+  .sidebar {
+    padding: 12px;
+  }
+  
+  .main-content {
+    padding: 10px;
+  }
+  
+  .domain-btn {
+    width: 140px;
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+  
+  .chat-input {
+    width: 98%;
+    padding: 0.8rem;
+  }
+  
+  .message {
+    max-width: 90%;
+    padding: 12px;
+  }
+  
+  .auth-box {
+    padding: 25px 15px;
+  }
+  
+  .auth-box h2 {
+    font-size: 1.3rem;
+  }
+  
+  .phrase {
+    font-size: 1.2rem;
+  }
+}
+
+/* Mobile-first improvements */
+@media (max-width: 768px) {
+  /* Ensure touch targets are adequate */
+  button, 
+  .domain-btn, 
+  .chat-input button {
+    min-height: 44px;
+  }
+  
+  input, 
+  textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  /* Improve scrolling */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Keep your existing 768px media query but add this override */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100% !important;
+  }
+  
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+}
