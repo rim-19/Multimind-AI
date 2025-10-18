@@ -92,6 +92,8 @@ async function handleSignup(event) {
     alert("Signup failed. Please try again.");
   }
 }
+
+
 // read client id from meta tag
 const GOOGLE_CLIENT_ID = document.getElementById('google-client-id')?.content || '';
 
@@ -117,7 +119,7 @@ if (GOOGLE_CLIENT_ID) {
 async function handleGoogleCredential(response) {
   // response.credential is the ID token (JWT)
   try {
-    const res = await fetch('/auth/google', {
+    const res = await fetch('${baseURL}/auth/google', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ credential: response.credential })
