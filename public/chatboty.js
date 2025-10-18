@@ -116,8 +116,7 @@ if (GOOGLE_CLIENT_ID) {
   };
 }
 
-async function handleGoogleCredential(response) {
-  // response.credential is the ID token (JWT)
+window.handleGoogleCredential = async function(response) {
   try {
     const res = await fetch(`${baseURL}/auth/google`, {
       method: 'POST',
@@ -126,11 +125,10 @@ async function handleGoogleCredential(response) {
     });
     const data = await res.json();
     if (data.success) {
-      // logged in: set local state, close overlay, etc.
       currentUserId = data.userId;
       localStorage.setItem('user_id', data.userId);
-      loginOverlay.style.display = "none";
-      blurWrapper.classList.add("clear");
+      document.getElementById("login-overlay").style.display = "none";
+      document.getElementById("blur-wrapper").classList.add("clear");
       initializeAllChats();
     } else {
       alert(data.error || 'Google sign-in failed');
@@ -139,7 +137,12 @@ async function handleGoogleCredential(response) {
     console.error('Google sign-in error', err);
     alert('Google sign-in failed');
   }
-}
+};
+
+
+
+
+
 
 
 
