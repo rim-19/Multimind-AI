@@ -119,7 +119,7 @@ if (GOOGLE_CLIENT_ID) {
 async function handleGoogleCredential(response) {
   // response.credential is the ID token (JWT)
   try {
-    const res = await fetch('${baseURL}/auth/google', {
+    const res = await fetch(`${baseURL}/auth/google`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ credential: response.credential })
@@ -140,6 +140,8 @@ async function handleGoogleCredential(response) {
     alert('Google sign-in failed');
   }
 }
+
+
 
 
   // Initialize all chat interfaces
