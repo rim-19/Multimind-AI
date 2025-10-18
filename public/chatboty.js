@@ -92,6 +92,53 @@ async function handleSignup(event) {
     alert("Signup failed. Please try again.");
   }
 }
+// read client id from meta tag
+const GOOGLE_CLIENT_ID = document.getElementById('google-client-id')?.content || '';
+
+/* initialize Google button and One-Tap */
+if (GOOGLE_CLIENT_ID) {
+  window.onload = () => {
+    google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: handleGoogleCredential // function defined below
+    });
+
+    // Render the one-tap / button (standard button)
+    google.accounts.id.renderButton(
+      document.getElementById('g-signin-button'),
+      { theme: 'outline', size: 'large' } // customization
+    );
+
+    // Optionally enable automatic One-Tap prompt:
+    // google.accounts.id.prompt(); // auto prompt (careful with UX)
+  };
+}
+
+async function handleGoogleCredential(response) {
+  // response.credential is the ID token (JWT)
+  try {
+    const res = await fetch('/auth/google', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ credential: response.credential })
+    });
+    const data = await res.json();
+    if (data.success) {
+      // logged in: set local state, close overlay, etc.
+      currentUserId = data.userId;
+      localStorage.setItem('user_id', data.userId);
+      loginOverlay.style.display = "none";
+      blurWrapper.classList.add("clear");
+      initializeAllChats();
+    } else {
+      alert(data.error || 'Google sign-in failed');
+    }
+  } catch (err) {
+    console.error('Google sign-in error', err);
+    alert('Google sign-in failed');
+  }
+}
+
 
   // Initialize all chat interfaces
   function initializeAllChats() {

@@ -14,6 +14,11 @@
     />
 
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <!-- Google Identity One-Tap -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<meta id="google-client-id" content="http://834779146861-do9mr93gvojmvqb4kgf77n4r213c3qm2.apps.googleusercontent.com">
+
+
   </head>
   <body>
     <!-- Login overlay -->
@@ -31,72 +36,45 @@
               <!-- LEFT: FORM SECTION -->
 
               <!-- LOGIN FORM -->
-              <form id="login-form">
-                <h2>Welcome Back</h2>
-                <input
-                  type="text"
-                  id="login-username"
-                  placeholder="Username"
-                  required
-                />
-                <input
-                  type="password"
-                  id="login-password"
-                  placeholder="Password"
-                  required
-                />
-                <button type="button" onclick="handleLogin()" id="login-button">
-                  Login
-                </button>
-                <p>
-                  Don't have an account?
-                  <a href="#" onclick="showSignup()">Sign up</a>
-                </p>
-              </form>
+              <!-- LOGIN FORM -->
+  <form id="login-form">
+    <h2>Welcome Back</h2>
+    <input type="text" id="login-username" placeholder="Username" required />
+    <input type="password" id="login-password" placeholder="Password" required />
+    <button type="button" onclick="handleLogin()" id="login-button">Login</button>
 
-              <!-- SIGNUP FORM -->
-              <form id="signup-form" style="display: none">
-                <h2>Create Account</h2>
-                <input
-                  type="text"
-                  id="signup-username"
-                  placeholder="Username"
-                  required
-                />
-                <input
-                  type="email"
-                  id="signup-email"
-                  placeholder="Email"
-                  required
-                />
-                <input
-                  type="password"
-                  id="signup-password"
-                  placeholder="Password"
-                  required
-                />
+    <!-- Google Sign-In Button for Login -->
+    <div class="g_id_signin" data-type="standard"></div>
 
-                <div class="terms">
-                  <input type="checkbox" id="agree" required />
-                  <label for="agree">
-                    I agree to the <a href="#">Terms</a> and
-                    <a href="#">Privacy Policy</a>.
-                  </label>
-                </div>
+    <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
+  </form>
 
-                <button
-                  type="button"
-                  onclick="handleSignup()"
-                  id="signup-button"
-                >
-                  Sign Up
-                </button>
-                <p>
-                  Already have an account?
-                  <a href="#" onclick="showLogin()">Login</a>
-                </p>
-              </form>
-            </div>
+  <!-- SIGNUP FORM -->
+  <form id="signup-form" style="display: none">
+    <h2>Create Account</h2>
+    <input type="text" id="signup-username" placeholder="Username" required />
+    <input type="email" id="signup-email" placeholder="Email" required />
+    <input type="password" id="signup-password" placeholder="Password" required />
+
+    <div class="terms">
+      <input type="checkbox" id="agree" required />
+      <label for="agree">I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</label>
+    </div>
+
+    <button type="button" onclick="handleSignup()" id="signup-button">Sign Up</button>
+
+    <!-- Google Sign-In Button for Signup -->
+    <div class="g_id_signin" data-type="standard"></div>
+
+    <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+  </form>
+
+  <!-- Optional One-Tap Google prompt (can enable by setting data-auto_prompt="true") -->
+  <div id="g_id_onload"
+       data-client_id="http://834779146861-do9mr93gvojmvqb4kgf77n4r213c3qm2.apps.googleusercontent.com"
+       data-login_uri=""
+       data-auto_prompt="false">
+  </div>
 
             <!-- RIGHT: VIDEO BACKGROUND -->
             <div class="video-box">

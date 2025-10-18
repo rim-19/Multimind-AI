@@ -219,6 +219,47 @@ app.post('/signup', async (req, res) => {
   }
 });
 
+const { OAuth2Client } = require('google-auth-library');
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+// POST /auth/google
+app.post('/auth/google', async (req, res) => {
+  const { credential } = req.body; // id token from Google
+  if (!credential) return res.status(400).json({ error: 'No credential' });
+
+  try {
+    const ticket = await client.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID
+    });
+    const payload = ticket.getPayload();
+    // payload contains email, name, picture, sub (google id), etc.
+    const email = payload.email;
+    const username = payload.name || payload.email.split('@')[0];
+
+    // Check user in DB
+    const [rows] = await db.execute('SELECT id FROM users WHERE email = ?', [email]);
+    let userId;
+    if (rows.length > 0) {
+      userId = rows[0].id;
+    } else {
+      // create new user with password placeholder
+      const [result] = await db.execute(
+        'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+        [username, email, 'google_auth']
+      );
+      userId = result.insertId;
+    }
+
+    // create session
+    req.session.userId = userId;
+
+    res.json({ success: true, userId });
+  } catch (err) {
+    console.error('Google login error:', err);
+    res.status(500).json({ error: 'Authentication failed' });
+  }
+});
 
 
 
