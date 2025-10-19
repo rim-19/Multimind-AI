@@ -95,7 +95,8 @@ async function handleSignup(event) {
 
 
 // read client id from meta tag
-const GOOGLE_CLIENT_ID = document.getElementById('google-client-id')?.content || '';
+const GOOGLE_CLIENT_ID = document.querySelector('meta[name="google-signin-client_id"]')?.content || '';
+
 
 /* initialize Google button and One-Tap */
 if (GOOGLE_CLIENT_ID) {
