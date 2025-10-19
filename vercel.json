@@ -6,16 +6,5 @@
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/server.js" }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self' data: blob: https://accounts.google.com https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; frame-src https://accounts.google.com https://*.google.com; frame-ancestors 'self' https://accounts.google.com;"
-        }
-      ]
-    }
   ]
 }
