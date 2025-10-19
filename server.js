@@ -1,10 +1,28 @@
 require("dotenv").config();
 const express = require("express");
+
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const cors = require("cors");
 const db = require("./db");
 const session = require("express-session"); // Added session middleware
 const app = express();
+
+// CSP middleware
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy",
+    "default-src 'self' data: blob: https://accounts.google.com https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com https://accounts.google.com/gsi https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com; " +
+    "style-src 'self' 'unsafe-inline' https://accounts.google.com https://accounts.google.com/gsi https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; " +
+    "style-src-elem 'self' https://accounts.google.com https://accounts.google.com/gsi https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; " +
+    "font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; " +
+    "img-src 'self' data: https://*.googleusercontent.com https://*.gstatic.com https://accounts.google.com https://*.google.com; " +
+    "frame-src https://accounts.google.com https://*.google.com; " +
+    "frame-ancestors 'self' https://accounts.google.com;"
+  );
+  next();
+});
+
+
 const port = 3000;
 
 const path = require('path');
@@ -219,6 +237,47 @@ app.post('/signup', async (req, res) => {
   }
 });
 
+const { OAuth2Client } = require('google-auth-library');
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+// POST /auth/google
+app.post('/auth/google', async (req, res) => {
+  const { credential } = req.body; // id token from Google
+  if (!credential) return res.status(400).json({ error: 'No credential' });
+
+  try {
+    const ticket = await client.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID
+    });
+    const payload = ticket.getPayload();
+    // payload contains email, name, picture, sub (google id), etc.
+    const email = payload.email;
+    const username = payload.name || payload.email.split('@')[0];
+
+    // Check user in DB
+    const [rows] = await db.execute('SELECT id FROM users WHERE email = ?', [email]);
+    let userId;
+    if (rows.length > 0) {
+      userId = rows[0].id;
+    } else {
+      // create new user with password placeholder
+      const [result] = await db.execute(
+        'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+        [username, email, 'google_auth']
+      );
+      userId = result.insertId;
+    }
+
+    // create session
+    req.session.userId = userId;
+
+    res.json({ success: true, userId });
+  } catch (err) {
+    console.error('Google login error:', err);
+    res.status(500).json({ error: 'Authentication failed' });
+  }
+});
 
 
 

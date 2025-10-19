@@ -93,6 +93,61 @@ async function handleSignup(event) {
   }
 }
 
+
+// read client id from meta tag
+const GOOGLE_CLIENT_ID = document.querySelector('meta[name="google-signin-client_id"]')?.content || '';
+
+
+/* initialize Google button and One-Tap */
+if (GOOGLE_CLIENT_ID) {
+  window.onload = () => {
+    google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: handleGoogleCredential // function defined below
+    });
+
+    // Render the one-tap / button (standard button)
+    google.accounts.id.renderButton(
+      document.getElementById('g-signin-button'),
+      { theme: 'outline', size: 'large' } // customization
+    );
+
+    // Optionally enable automatic One-Tap prompt:
+    // google.accounts.id.prompt(); // auto prompt (careful with UX)
+  };
+}
+
+window.handleGoogleCredential = async function(response) {
+  try {
+    const res = await fetch(`${baseURL}/auth/google`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ credential: response.credential })
+    });
+    const data = await res.json();
+    if (data.success) {
+      currentUserId = data.userId;
+      localStorage.setItem('user_id', data.userId);
+      document.getElementById("login-overlay").style.display = "none";
+      document.getElementById("blur-wrapper").classList.add("clear");
+      initializeAllChats();
+    } else {
+      alert(data.error || 'Google sign-in failed');
+    }
+  } catch (err) {
+    console.error('Google sign-in error', err);
+    alert('Google sign-in failed');
+  }
+};
+
+
+
+
+
+
+
+
+
   // Initialize all chat interfaces
   function initializeAllChats() {
     initializeChat("business", "pro-input", "send", "business_chat");
@@ -215,11 +270,13 @@ async function handleSignup(event) {
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
     newchat.addEventListener("click", () => {
-    if (currentChatDomain) {
-    activeChatSessions[currentChatDomain] = [];  // Clear session for that domain
-    chatMessages.innerHTML = '';                 // Clear the displayed messages only
+  if (currentChatDomain) {
+    activeChatSessions[currentChatDomain] = [];
+    const chatMessages = document.querySelector(`#${currentChatDomain} .chat-messages`);
+    if (chatMessages) chatMessages.innerHTML = '';
   }
-    });
+});
+
   }
   
 
@@ -324,6 +381,42 @@ historyDomainList.querySelectorAll("li").forEach(item => {
 
  // Ensure you have <input id="fileInput" type="file" style="display:none">
 
+
+document.getElementById("pro-input5").addEventListener("change", async (event) => {
+  event.preventDefault(); // ⛔ prevent page reload
+
+  const file = event.target.files[0];
+  if (!file || currentChatDomain !== "analysis") return;
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("userId", currentUserId);
+  formData.append("domain", currentChatDomain);
+
+  const chatMessages = document.querySelector(`#${currentChatDomain} .chat-messages`);
+  if (!chatMessages) return;
+
+  try {
+    displayMessage("📄 Analyzing document...", "model", chatMessages);
+
+    const response = await fetch(`${baseURL}/upload`, {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data.response) {
+      displayMessage(`📄 Uploaded: ${file.name}`, "user", chatMessages);
+      displayMessage(data.response, "model", chatMessages);
+    } else {
+      displayMessage("❌ Failed to process the file.", "model", chatMessages);
+    }
+  } catch (error) {
+    console.error("Upload error:", error);
+    displayMessage("⚠️ Error uploading document.", "model", chatMessages);
+  }
+});
 
 
 

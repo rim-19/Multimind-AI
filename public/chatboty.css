@@ -351,9 +351,6 @@ body {
 
 
 
-
-
-
 .sidebar {
   position: fixed;
   left: 0;
@@ -426,6 +423,8 @@ body {
 .sidebar:not(.collapsed) ~ .sidebar-toggle i {
   transform: rotate(90deg);
 }
+
+
 
 .message {
   display: inline-block;
@@ -679,6 +678,10 @@ font-size: 1.8rem;
 .history-domain:hover {
   background: #ffccdd;
 }
+
+
+
+
 
 
 /* ===== MOBILE RESPONSIVE STYLES ===== */
