@@ -996,7 +996,7 @@ font-size: 1.8rem;
   }
 
   .video-box {
-    height: 200px;
+    height: 240px;
     order: 1;
     flex: 0 0 auto;
     overflow: hidden;
@@ -1093,7 +1093,7 @@ font-size: 1.8rem;
   }
 
   .video-box {
-    height: 180px;
+    height: 200px;
   }
 
   .phrase {
