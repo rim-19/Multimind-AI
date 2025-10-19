@@ -7,20 +7,7 @@ const db = require("./db");
 const session = require("express-session"); // Added session middleware
 const app = express();
 
-// CSP middleware
-app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy",
-    "default-src 'self' data: blob: https://accounts.google.com https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com; " +
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com https://accounts.google.com/gsi https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com; " +
-    "style-src 'self' 'unsafe-inline' https://accounts.google.com https://accounts.google.com/gsi https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; " +
-    "style-src-elem 'self' https://accounts.google.com https://accounts.google.com/gsi https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; " +
-    "font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; " +
-    "img-src 'self' data: https://*.googleusercontent.com https://*.gstatic.com https://accounts.google.com https://*.google.com; " +
-    "frame-src https://accounts.google.com https://*.google.com; " +
-    "frame-ancestors 'self' https://accounts.google.com;"
-  );
-  next();
-});
+
 
 
 const port = 3000;
