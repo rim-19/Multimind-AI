@@ -960,8 +960,8 @@ font-size: 1.8rem;
   }
 
   .chat-input button {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     min-width: 50px;
     flex-shrink: 0;
     display: flex;
