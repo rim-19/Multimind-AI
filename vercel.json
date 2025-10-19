@@ -13,20 +13,9 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src * 'self' data: blob: https://accounts.google.com https://*.gstatic.com https://*.google.com; frame-ancestors 'self' https://accounts.google.com;"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "ALLOW-FROM https://accounts.google.com"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
+          "value": "default-src 'self' data: blob: https://accounts.google.com https://*.google.com https://*.gstatic.com; frame-src https://accounts.google.com https://*.google.com; frame-ancestors 'self' https://accounts.google.com;"
         }
       ]
     }
   ]
 }
-
-
-
