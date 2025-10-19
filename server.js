@@ -6,22 +6,22 @@ const cors = require("cors");
 const db = require("./db");
 const session = require("express-session"); // Added session middleware
 const app = express();
-// --- add this near the top of server.js, right after `const app = express();` ---
 app.use((req, res, next) => {
-  // Allow Google Sign-In iframe, CDNJS, fonts, and inline styles for now.
-  // This is permissive (unsafe-inline). We can harden later with nonces/hashes.
   res.setHeader(
     "Content-Security-Policy",
-    "default-src 'self' data: blob: https://accounts.google.com https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com; " +
-    "script-src 'self' 'unsafe-inline' https://accounts.google.com https://*.gstatic.com https://cdnjs.cloudflare.com; " +
-    "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; " +
-    "font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; " +
-    "img-src 'self' data: https://*.googleusercontent.com https://*.gstatic.com; " +
-    "frame-src https://accounts.google.com https://*.google.com; " +
-    "frame-ancestors 'self' https://accounts.google.com;"
+    [
+      "default-src 'self' data: blob: https://accounts.google.com https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com;",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com;",
+      "style-src 'self' 'unsafe-inline' https://accounts.google.com https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com https://fonts.googleapis.com;",
+      "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;",
+      "img-src 'self' data: https://*.googleusercontent.com https://*.gstatic.com;",
+      "frame-src https://accounts.google.com https://*.google.com;",
+      "frame-ancestors 'self' https://accounts.google.com;"
+    ].join(" ")
   );
   next();
 });
+
 
 
 

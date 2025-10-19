@@ -1041,7 +1041,7 @@ font-size: 1.8rem;
 
 
 
-/* ✅ FIX LOGIN OVERLAY RESPONSIVENESS WITHOUT BREAKING APP */
+/* ✅ FIX LOGIN OVERLAY RESPONSIVENESS WITHOUT BREAKING APP 
 @media (max-width: 900px) {
   #login-overlay .auth-container {
     flex-direction: column;
@@ -1081,7 +1081,7 @@ font-size: 1.8rem;
   }
 
   #login-overlay .video-box {
-    display: none; /* hide video for small screens */
+    display: none; /* hide video for small screens 
   }
 
   #login-overlay .phrase {
@@ -1097,3 +1097,5 @@ font-size: 1.8rem;
     font-size: 0.9rem;
   }
 }
+ 
+*/
