@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-client_id" content="834779146861-do9mr93gvojmvqb4kgf77n4r213c3qm2.apps.googleusercontent.com">
+<meta http-equiv="Content-Security-Policy" content="style-src-elem 'self' 'unsafe-inline' https://accounts.google.com https://accounts.google.com/gsi https://*.google.com https://*.gstatic.com https://cdnjs.cloudflare.com https://fonts.googleapis.com;">
 
   
     <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -50,7 +51,7 @@
   </form>
 
   <!-- SIGNUP FORM -->
-  <form id="signup-form" style="display: none">
+  <form id="signup-form">
     <h2>Create Account</h2>
     <input type="text" id="signup-username" placeholder="Username" required />
     <input type="email" id="signup-email" placeholder="Email" required />
@@ -90,7 +91,7 @@
       <!-- Sidebar Navigation -->
       <div class="sidebar" id="sidebar">
         <div class="menu-section">
-          <h3 style="text-align: center">Domains</h3>
+          <h3>Domains</h3>
           <button class="domain-btn business-btn" data-domain="business">
             Business & Commerce
           </button>
@@ -110,7 +111,7 @@
             health Assistant
           </button>
           
-          <div style="display: flex; justify-content: center; gap: 3px">
+          <div id="ch">
             <button class="domain-btn chathistory-btn" id="chatHistoryBtn">
               Chat History
             </button>
@@ -321,55 +322,15 @@
             </div>
           </div>
 
-          <!-- Document Analysis -->
-          <div class="chat-interface analysis" id="analysis">
-            <div class="chat-header">Document Analysis Assistant 📂</div>
-            <div class="chat-messages"></div>
-            <div
-              class="chat-input"
-              style="display: flex; justify-content: center"
-            >
-              <button
-                type="button"
-                id="upload"
-                onclick="document.getElementById('pro-input5').click()"
-                style="width: 60px"
-              >
-                Upload a file
-              </button>
-
-              <input
-                type="file"
-                id="pro-input5"
-                style="display: none"
-                accept=".txt,.pdf,.docx"
-              />
-              <button id="send5">
-                <div class="svg-wrapper-1">
-                  <div class="svg-wrapper">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      height="24"
-                    >
-                      <path fill="none" d="M0 0h24v24H0z"></path>
-                      <path
-                        fill="currentColor"
-                        d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </button>
-            </div>
-          </div>
+         
+              
+             
         </div>
 
-        <!-- Chat History View (Initially Hidden) -->
+      
       </div>
     </div>
-    
+    </div>
     <script src="/public/chatboty.js"></script>
 
    

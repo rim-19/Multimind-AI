@@ -19,6 +19,10 @@ body {
   height: 100vh;
 }
 
+
+#signup-form{
+  display: none;
+}
 /* App Layout */
 
 /* Sidebar Styles */
@@ -63,7 +67,13 @@ body {
   letter-spacing: 1px;
 }
 
+
 /* Button Styles */
+
+
+.menu-section h3 {
+  text-align: center;
+}
 .domain-btn {
   width: 100%;
   padding: 12px 15px;
@@ -186,6 +196,7 @@ body {
   height: 20%;
   margin: auto;
   transition: all 0.5 ease;
+
 }
 .chat-input:focus {
   border-color: hotpink;
@@ -1039,7 +1050,11 @@ font-size: 1.8rem;
 }
 
 
-
+#ch{
+  display: flex;
+  justify-content: center;
+  gap: 3px
+}
 
 /* ✅ FIX LOGIN OVERLAY RESPONSIVENESS WITHOUT BREAKING APP 
 @media (max-width: 900px) {
