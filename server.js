@@ -1,10 +1,20 @@
 require("dotenv").config();
 const express = require("express");
+
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const cors = require("cors");
 const db = require("./db");
 const session = require("express-session"); // Added session middleware
 const app = express();
+// ✅ Allow Google Sign-In and required domains
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self' data: blob: https://accounts.google.com https://*.google.com https://*.gstatic.com; frame-src https://accounts.google.com https://*.google.com; frame-ancestors 'self' https://accounts.google.com;"
+  );
+  next();
+});
+
 const port = 3000;
 
 const path = require('path');
