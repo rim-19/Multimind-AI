@@ -848,12 +848,12 @@ font-size: 1.8rem;
 /* ===== MOBILE RESPONSIVE STYLES ===== */
 @media (max-width: 768px) {
     .vid2-box {
-        height: 80px; /* Smaller height for mobile */
+        height: 110px; /* Smaller height for mobile */
     }
 }
 @media (max-width: 480px) {
     .vid2-box {
-        height: 60px; /* Even smaller for tiny screens */
+        height: 80px; /* Even smaller for tiny screens */
     }
 }
 @media (max-width: 768px) {
