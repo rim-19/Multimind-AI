@@ -43,7 +43,8 @@
     <button type="button" onclick="handleLogin()" id="login-button">Login</button>
 
     <!-- Google Sign-In Button for Login -->
-    <div class="g_id_signin" data-type="standard"></div>
+  <div id="g-signin-button" class="g_id_signin" data-type="standard"></div>
+
 
     <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
   </form>
@@ -62,8 +63,7 @@
 
     <button type="button" onclick="handleSignup()" id="signup-button">Sign Up</button>
 
-    <!-- Google Sign-In Button for Signup -->
-    <div class="g_id_signin" data-type="standard"></div>
+  
 
     <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
   </form>
@@ -122,27 +122,14 @@
               <h3>Select a Domain</h3>
               <ul id="history-domain-list">
                 <!-- Domains will be added dynamically or statically -->
-                <li class="history-domain" data-topic="Business">
-                  Business & Commerce
-                </li>
-                <li class="history-domain" data-topic="Computer">
-                  Computer Science & IT
-                </li>
-                <li class="history-domain" data-topic="general">
-                  Personal Assistant
-                </li>
-                <li class="history-domain" data-topic="language">
-                  language Teacher
-                </li>
-                <li class="history-domain" data-topic="school">
-                  school Assistant
-                </li>
-                <li class="history-domain" data-topic="health">
-                  health Assistant
-                </li>
-                <li class="history-domain" data-topic="Document">
-                  Document analysis
-                </li>
+                <li class="history-domain" data-topic="business">Business & Commerce</li>
+<li class="history-domain" data-topic="tech">Computer Science & IT</li>
+<li class="history-domain" data-topic="general">Personal Assistant</li>
+<li class="history-domain" data-topic="language">Language Teacher</li>
+<li class="history-domain" data-topic="school">School Assistant</li>
+<li class="history-domain" data-topic="health">Health Assistant</li>
+<li class="history-domain" data-topic="analysis">Document Analysis</li>
+
               </ul>
             </div>
           </div>

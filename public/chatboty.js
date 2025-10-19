@@ -270,11 +270,13 @@ window.handleGoogleCredential = async function(response) {
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
     newchat.addEventListener("click", () => {
-    if (currentChatDomain) {
-    activeChatSessions[currentChatDomain] = [];  // Clear session for that domain
-    chatMessages.innerHTML = '';                 // Clear the displayed messages only
+  if (currentChatDomain) {
+    activeChatSessions[currentChatDomain] = [];
+    const chatMessages = document.querySelector(`#${currentChatDomain} .chat-messages`);
+    if (chatMessages) chatMessages.innerHTML = '';
   }
-    });
+});
+
   }
   
 
@@ -397,7 +399,7 @@ document.getElementById("pro-input5").addEventListener("change", async (event) =
   try {
     displayMessage("📄 Analyzing document...", "model", chatMessages);
 
-    const response = await fetch("http://localhost:3000/upload", {
+    const response = await fetch(`${baseURL}/upload`, {
       method: "POST",
       body: formData,
     });
