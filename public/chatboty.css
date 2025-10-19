@@ -941,55 +941,82 @@ font-size: 1.8rem;
     font-size: 0.95rem;
   }
 
-  /* Chat Input Mobile */
+  /* Chat Input Mobile - FIXED: Center the send button */
   .chat-input {
     width: 95%;
     height: 60px;
     padding: 1rem;
     margin: 15px auto;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .chat-input input {
     font-size: 16px;
     padding: 0.8rem 1rem;
+    flex: 1;
+    margin-right: 10px;
   }
 
   .chat-input button {
     width: 50px;
     height: 50px;
     min-width: 50px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
   }
 
-  /* Auth Container Mobile */
+  /* Auth Container Mobile - FIXED: Center form and fit video */
   .overlay {
     padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
   }
 
   .auth-container {
     width: 100%;
     max-width: 400px;
     height: auto;
+    max-height: 90vh;
     flex-direction: column;
+    margin: 0 auto;
   }
 
   .auth-box {
     padding: 30px 25px;
     order: 2;
+    flex: 0 0 auto;
   }
 
   .video-box {
     height: 150px;
     order: 1;
+    flex: 0 0 auto;
+    overflow: hidden;
+  }
+
+  .video-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .auth-box h2 {
     font-size: 1.4rem;
+    margin-bottom: 1rem;
   }
 
   .auth-box input {
     padding: 14px;
     font-size: 16px;
+    margin-bottom: 10px;
   }
 
   .auth-box button {
@@ -1044,6 +1071,7 @@ font-size: 1.8rem;
     font-size: 0.9rem;
   }
 
+  /* Chat Input - Small Mobile Fix */
   .chat-input {
     width: 98%;
     height: 55px;
@@ -1052,6 +1080,12 @@ font-size: 1.8rem;
 
   .chat-input input {
     padding: 0.7rem 0.9rem;
+  }
+
+  /* Auth Container - Small Mobile Fix */
+  .auth-container {
+    max-width: 95%;
+    max-height: 95vh;
   }
 
   .auth-box {
@@ -1084,5 +1118,26 @@ font-size: 1.8rem;
   .chat-messages,
   .sidebar {
     -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent body scrolling when auth overlay is open */
+  body.auth-open {
+    overflow: hidden;
+  }
+}
+
+/* Extra fix for very small screens */
+@media (max-width: 360px) {
+  .auth-box {
+    padding: 20px 15px;
+  }
+  
+  .auth-box h2 {
+    font-size: 1.2rem;
+  }
+  
+  .chat-input {
+    height: 50px;
+    padding: 0.7rem;
   }
 }
