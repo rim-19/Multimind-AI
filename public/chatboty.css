@@ -1,3 +1,4 @@
+
 /* Global Styles */
 :root {
   --sidebar-width: 280px;
@@ -824,4 +825,3 @@ font-size: 1.8rem;
 .history-domain:hover {
   background: #ffccdd;
 }
-

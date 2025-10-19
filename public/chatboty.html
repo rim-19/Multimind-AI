@@ -1,17 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>MultiMind AI</title>
-    <link rel="stylesheet" href="/public/chatboty.css" />
+    <link rel="stylesheet" href="/chatboty.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
- 
-    <link rel="icon" type="image/png" href="/public/favicon2.png" />
 
+    <link rel="icon" type="image/png" href="/favicon2.png" />
   </head>
   <body>
     <!-- Login overlay -->
@@ -29,46 +32,77 @@
               <!-- LEFT: FORM SECTION -->
 
               <!-- LOGIN FORM -->
-              <!-- LOGIN FORM -->
-  <form id="login-form">
-    <h2>Welcome Back</h2>
-    <input type="text" id="login-username" placeholder="Username" required />
-    <input type="password" id="login-password" placeholder="Password" required />
-    <button type="button" onclick="handleLogin()" id="login-button">Login</button>
+              <form id="login-form">
+                <h2>Welcome Back</h2>
+                <input
+                  type="text"
+                  id="login-username"
+                  placeholder="Username"
+                  required
+                />
+                <input
+                  type="password"
+                  id="login-password"
+                  placeholder="Password"
+                  required
+                />
+                <button type="button" onclick="handleLogin()" id="login-button">
+                  Login
+                </button>
+                <p>
+                  Don't have an account?
+                  <a href="#" onclick="showSignup()">Sign up</a>
+                </p>
+              </form>
 
-    <!-- Google Sign-In Button for Login -->
-  <div id="g-signin-button" class="g_id_signin" data-type="standard"></div>
+              <!-- SIGNUP FORM -->
+              <form id="signup-form" style="display: none">
+                <h2>Create Account</h2>
+                <input
+                  type="text"
+                  id="signup-username"
+                  placeholder="Username"
+                  required
+                />
+                <input
+                  type="email"
+                  id="signup-email"
+                  placeholder="Email"
+                  required
+                />
+                <input
+                  type="password"
+                  id="signup-password"
+                  placeholder="Password"
+                  required
+                />
 
+                <div class="terms">
+                  <input type="checkbox" id="agree" required />
+                  <label for="agree">
+                    I agree to the <a href="#">Terms</a> and
+                    <a href="#">Privacy Policy</a>.
+                  </label>
+                </div>
 
-    <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
-  </form>
-
-  <!-- SIGNUP FORM -->
-  <form id="signup-form">
-    <h2>Create Account</h2>
-    <input type="text" id="signup-username" placeholder="Username" required />
-    <input type="email" id="signup-email" placeholder="Email" required />
-    <input type="password" id="signup-password" placeholder="Password" required />
-
-    <div class="terms">
-      <input type="checkbox" id="agree" required />
-      <label for="agree">I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</label>
-    </div>
-
-    <button type="button" onclick="handleSignup()" id="signup-button">Sign Up</button>
-
-  
-
-    <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
-  </form>
-
-  
-
+                <button
+                  type="button"
+                  onclick="handleSignup()"
+                  id="signup-button"
+                >
+                  Sign Up
+                </button>
+                <p>
+                  Already have an account?
+                  <a href="#" onclick="showLogin()">Login</a>
+                </p>
+              </form>
+            </div>
 
             <!-- RIGHT: VIDEO BACKGROUND -->
             <div class="video-box">
               <video autoplay muted loop>
-                <source src="/public/video.mp4" type="video/mp4" />
+                <source src="/video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
@@ -84,7 +118,7 @@
       <!-- Sidebar Navigation -->
       <div class="sidebar" id="sidebar">
         <div class="menu-section">
-          <h3>Domains</h3>
+          <h3 style="text-align: center">Domains</h3>
           <button class="domain-btn business-btn" data-domain="business">
             Business & Commerce
           </button>
@@ -104,7 +138,7 @@
             health Assistant
           </button>
           
-          <div id="ch">
+          <div style="display: flex; justify-content: center; gap: 3px">
             <button class="domain-btn chathistory-btn" id="chatHistoryBtn">
               Chat History
             </button>
@@ -116,14 +150,27 @@
               <h3>Select a Domain</h3>
               <ul id="history-domain-list">
                 <!-- Domains will be added dynamically or statically -->
-                <li class="history-domain" data-topic="business">Business & Commerce</li>
-<li class="history-domain" data-topic="tech">Computer Science & IT</li>
-<li class="history-domain" data-topic="general">Personal Assistant</li>
-<li class="history-domain" data-topic="language">Language Teacher</li>
-<li class="history-domain" data-topic="school">School Assistant</li>
-<li class="history-domain" data-topic="health">Health Assistant</li>
-<li class="history-domain" data-topic="analysis">Document Analysis</li>
-
+                <li class="history-domain" data-topic="Business">
+                  Business & Commerce
+                </li>
+                <li class="history-domain" data-topic="Computer">
+                  Computer Science & IT
+                </li>
+                <li class="history-domain" data-topic="general">
+                  Personal Assistant
+                </li>
+                <li class="history-domain" data-topic="language">
+                  language Teacher
+                </li>
+                <li class="history-domain" data-topic="school">
+                  school Assistant
+                </li>
+                <li class="history-domain" data-topic="health">
+                  health Assistant
+                </li>
+                <li class="history-domain" data-topic="Document">
+                  Document analysis
+                </li>
               </ul>
             </div>
           </div>
@@ -315,25 +362,54 @@
             </div>
           </div>
 
-         
-              
-             
+          <!-- Document Analysis -->
+          <div class="chat-interface analysis" id="analysis">
+            <div class="chat-header">Document Analysis Assistant 📂</div>
+            <div class="chat-messages"></div>
+            <div
+              class="chat-input"
+              style="display: flex; justify-content: center"
+            >
+              <button
+                type="button"
+                id="upload"
+                onclick="document.getElementById('pro-input5').click()"
+                style="width: 60px"
+              >
+                Upload a file
+              </button>
+
+              <input
+                type="file"
+                id="pro-input5"
+                style="display: none"
+                accept=".txt,.pdf,.docx"
+              />
+              <button id="send5">
+                <div class="svg-wrapper-1">
+                  <div class="svg-wrapper">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                    >
+                      <path fill="none" d="M0 0h24v24H0z"></path>
+                      <path
+                        fill="currentColor"
+                        d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
         </div>
 
-      
+        <!-- Chat History View (Initially Hidden) -->
       </div>
     </div>
-    </div>
-    <script src="/public/chatboty.js"></script>
-
-   
-<div
-    id="g_id_onload"
-    data-client_id="834779146861-do9mr93gvojmvqb4kgf77n4r213c3qm2.apps.googleusercontent.com"
-    data-callback="handleGoogleCredential"
-    data-auto_prompt="false" ></div>
-
-
-  
+    <script src="/chatboty.js"></script>
   </body>
 </html>
