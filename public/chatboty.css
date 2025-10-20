@@ -834,7 +834,7 @@ font-size: 1.8rem;
     background: transparent; /* Remove black background */
     height: 120px; /* Much smaller height */
     width: 100%;
-    margin-top: -15px;
+    margin-top: -27px;
 }
 
 .vid2-box video {
@@ -896,17 +896,17 @@ font-size: 1.8rem;
 }
 
 .logout-btn:hover .sign {
-  width: 30%;
+  width: 35%;
   transition-duration: .3s;
   padding-left: 20px;
 }
 /* hover effect button's text */
 .logout-btn:hover .text {
   opacity: 1;
-  width: 70%;
+  width: 50%;
   transition-duration: .3s;
   padding-right: 10px;
-  padding-top: 5px;
+  padding-top: 7px;
 }
 /* button click effect*/
 .logout-btn:active {
