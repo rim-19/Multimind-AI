@@ -58,13 +58,25 @@ async function handleLogin(event) {
       blurWrapper.classList.add("clear");
       initializeAllChats();
     } else {
-      alert("Invalid credentials.");
+      Swal.fire({
+  title: "Error!",
+  text: "Invalid credentials.",
+  icon: "error",
+  confirmButtonText: "OK"
+});
+
     }
   } catch (error) {
     console.error('Login failed:', error);
-    alert("Login failed. Please try again.");
+    Swal.fire({
+  title: "Error!",
+  text: "login failed, please try again.",
+  icon: "error",
+  confirmButtonText: "OK"
+});;
   }
 }
+
 
 async function handleSignup(event) {
   event.preventDefault();
@@ -83,14 +95,32 @@ async function handleSignup(event) {
     const data = await response.json();
 
     if (data.success) {
-      alert(`Account created for ${username}. Now login.`);
+      Swal.fire({
+  title: "Success!",
+  text: `Account created for ${username}. Now login`,
+  icon: "success",
+  confirmButtonText: "Continue"
+});
+      
       showLogin();
-    } else {
-      alert(data.error || "Signup failed. Please try again.");
+    }
+     else if (data.error) {
+      Swal.fire({
+  title: "Error!",
+  text: "signup failed, please try again.",
+  icon: "error",
+  confirmButtonText: "OK"
+});
+
     }
   } catch (error) {
     console.error('Signup failed:', error);
-    alert("Signup failed. Please try again.");
+         Swal.fire({
+  title: "Error!",
+  text: "signup failed, please try again.",
+  icon: "error",
+  confirmButtonText: "OK"
+});
   }
 }
 
@@ -145,58 +175,68 @@ async function handleSignup(event) {
     }
 
     loadChatHistory();
+// Message sending handler
+async function sendMessage() {
+  const message = userInput.value.trim();
+  if (message === "") return;
 
-    // Message sending handler
-    async function sendMessage() {
-      const message = userInput.value.trim();
-      if (message === "") return;
+  // Show "AI is typing..." toast
+  const typingToast = Toastify({
+    text: "🤖 AI is typing...",
+    gravity: "bottom",
+    position: "left",
+    backgroundColor: "linear-gradient(to right, #28acc6, #5ce2fdff)",
+    close: false,
+    duration: -1 // stays until we hide it manually
+  });
+  typingToast.showToast();
 
-      // Show thinking indicator
-      const thinkingMessage = document.createElement("div");
-      thinkingMessage.className = "typing-indicator";
-      thinkingMessage.innerText = "Bot is thinking...";
-      chatMessages.appendChild(thinkingMessage);
+  // Display user's message
+  displayMessage(message, "user", chatMessages);
+  userInput.value = "";
 
-      // Display user message
-      displayMessage(message, "user", chatMessages);
-      userInput.value = "";
+  try {
+    const response = await fetch("/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userInput: message,
+        chatHistory: chatHistory,
+        modelName: modelName,
+        userId: userId
+      }),
+    });
 
-      try {
-        const response = await fetch("/generate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            userInput: message,
-            chatHistory: chatHistory,
-            modelName: modelName,
-            userId: userId
-          }),
-        });
+    if (!response.ok) throw new Error("Network response was not ok");
 
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+    const data = await response.json();
 
-        const data = await response.json();
-        thinkingMessage.remove();
+    // Hide the typing toast once response is received
+    typingToast.hideToast?.();
 
-        // Display bot response
-        const geminiResponse = data.response;
-        displayMessage(geminiResponse, "model", chatMessages);
+    // Display bot response
+    const geminiResponse = data.response;
+    displayMessage(geminiResponse, "model", chatMessages);
 
-        // Update chat history
-        chatHistory.push({ role: "user", parts: [{ text: message }] });
-        chatHistory.push({ role: "model", parts: [{ text: geminiResponse }] });
-      } catch (error) {
-        console.error("Error generating response:", error);
-        thinkingMessage.remove();
-        displayMessage(
-          "Sorry, I encountered an error. Please try again.",
-          "model",
-          chatMessages
-        );
-      }
-    }
+    // Update chat history
+    chatHistory.push({ role: "user", parts: [{ text: message }] });
+    chatHistory.push({ role: "model", parts: [{ text: geminiResponse }] });
+
+  } catch (error) {
+    console.error("Error generating response:", error);
+    typingToast.hideToast?.(); // ensure toast is removed if error happens
+
+    // Show a nice error toast
+    Toastify({
+      text: "⚠️ Something went wrong. Please try again.",
+      gravity: "bottom",
+      position: "left",
+      backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+      duration: 3000
+    }).showToast();
+  }
+}
+
 
     // Event listeners
     sendButton.addEventListener("click", sendMessage);
@@ -275,7 +315,12 @@ historyDomainList.querySelectorAll("li").forEach(item => {
     const userId = currentUserId || localStorage.getItem("user_id");
 
     if (!userId) {
-      alert("Please log in to view chat history");
+           Swal.fire({
+  title: "Error!",
+  text: "please log in to view chat history!.",
+  icon: "error",
+  confirmButtonText: "OK"
+});
       return;
     }
 
@@ -304,9 +349,39 @@ historyDomainList.querySelectorAll("li").forEach(item => {
       }
     } catch (error) {
       console.error("Error loading domain history:", error);
-      alert("Failed to load chat history for this domain");
+           Swal.fire({
+  title: "Error!",
+  text: "failed to load chat history for this domain.",
+  icon: "error",
+  confirmButtonText: "OK"
+});
     }
   });
+});
+
+
+document.getElementById('logout-btn')?.addEventListener('click', () => {
+  // Clear saved user info
+  localStorage.removeItem('user_id');
+  currentUserId = null;
+
+  // Optionally clear chat messages from the UI
+  const chatMessages = document.querySelector('.chat-messages');
+  if (chatMessages) chatMessages.innerHTML = '';
+
+
+  if (loginOverlay && blurWrapper) {
+    loginOverlay.style.display = "flex";
+    blurWrapper.classList.remove("clear");
+  }
+
+ Swal.fire({
+  title: "Success!",
+  text: "you have been logged out.",
+  icon: "success",
+  confirmButtonText: "Continue"
+});
+
 });
 
 
