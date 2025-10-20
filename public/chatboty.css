@@ -835,7 +835,7 @@ font-size: 1.8rem;
     width: 100%;
     margin-top: -10px;
     left: 5; 
-    padding-left: 80px; 
+    padding-left: 90px; 
 }
 
 .vid2-box video {
@@ -933,7 +933,7 @@ font-size: 1.8rem;
          margin-top: 20px;
         justify-content: right; 
         position: absolute;
-        top: 540px;
+        top: 530px;
         left : -12px;
     }
      .vid2-box video {
