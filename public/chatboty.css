@@ -833,9 +833,9 @@ font-size: 1.8rem;
     background: transparent;
     height: 120px;
     width: 100%;
-    margin-top: -20px;
-    left: 0; /* Ensure it starts from left */
-    padding-left: 70px; /* Add some left padding */
+    margin-top: -10px;
+    left: 5; 
+    padding-left: 80px; 
 }
 
 .vid2-box video {
@@ -933,8 +933,8 @@ font-size: 1.8rem;
          margin-top: 20px;
         justify-content: right; 
         position: absolute;
-        top: 540px;
-        left : 10px;
+        top: 550px;
+        left : 0px;
     }
      .vid2-box video {
         height: 100%;
@@ -968,8 +968,8 @@ font-size: 1.8rem;
         margin-top: 20px;
         justify-content: right; 
         position: absolute;
-        top: 540px;
-        left : 10px;
+        top: 550px;
+        left : 0px;
     }
     
     .vid2-box video {
@@ -979,7 +979,7 @@ font-size: 1.8rem;
     .logout-btn {
         width: 35px;
         height: 35px;
-        margin-top: 540px;
+        margin-top: 560px;
     }
     
     .logout-btn:hover {
