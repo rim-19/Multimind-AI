@@ -931,7 +931,7 @@ font-size: 1.8rem;
          margin-top: 20px;
         justify-content: right; 
         position: absolute;
-        top: 60px;
+        top: 130px;
     }
      .vid2-box video {
         height: 100%;
@@ -960,8 +960,10 @@ font-size: 1.8rem;
    
     .vid2-box {
         height: 120px;
-        margin-top: 7px;
+         margin-top: 20px;
+        justify-content: right; 
         position: absolute;
+        top: 130px;
     }
     
     .vid2-box video {
