@@ -897,7 +897,7 @@ font-size: 1.8rem;
 
 /* Hover effect on button width */
 .logout-btn:hover {
-    width: 99px;
+    width: 96px;
     border-radius: 10px;
     transition-duration: .3s;
 }
@@ -933,8 +933,8 @@ font-size: 1.8rem;
          margin-top: 20px;
         justify-content: right; 
         position: absolute;
-        top: 550px;
-        left : -7px;
+        top: 560px;
+        left : -12px;
     }
      .vid2-box video {
         height: 100%;
@@ -968,8 +968,8 @@ font-size: 1.8rem;
         margin-top: 20px;
         justify-content: right; 
         position: absolute;
-        top: 550px;
-        left : -7px;
+        top: 560px;
+        left : -12px;
     }
     
     .vid2-box video {
