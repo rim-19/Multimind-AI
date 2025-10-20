@@ -183,8 +183,8 @@ async function sendMessage() {
   // Show "AI is typing..." toast
   const typingToast = Toastify({
     text: "🤖 AI is typing...",
-    gravity: "bottom",
-    position: "left",
+    gravity: "top",
+    position: "right",
     backgroundColor: "linear-gradient(to right, #28acc6, #5ce2fdff)",
     close: false,
     duration: -1 // stays until we hide it manually
