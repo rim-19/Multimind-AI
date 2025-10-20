@@ -897,7 +897,7 @@ font-size: 1.8rem;
 
 /* Hover effect on button width */
 .logout-btn:hover {
-    width: 110px;
+    width: 99px;
     border-radius: 10px;
     transition-duration: .3s;
 }
@@ -934,7 +934,7 @@ font-size: 1.8rem;
         justify-content: right; 
         position: absolute;
         top: 550px;
-        left : 0px;
+        left : -7px;
     }
      .vid2-box video {
         height: 100%;
@@ -945,7 +945,7 @@ font-size: 1.8rem;
         height: 40px;
         
         border-radius: 50%;
-        margin-top: 540px;
+        margin-top: 520px;
 
     }
     
@@ -969,7 +969,7 @@ font-size: 1.8rem;
         justify-content: right; 
         position: absolute;
         top: 550px;
-        left : 0px;
+        left : -7px;
     }
     
     .vid2-box video {
@@ -979,7 +979,7 @@ font-size: 1.8rem;
     .logout-btn {
         width: 35px;
         height: 35px;
-        margin-top: 560px;
+        margin-top: 540px;
     }
     
     .logout-btn:hover {
