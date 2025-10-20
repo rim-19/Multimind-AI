@@ -834,7 +834,7 @@ font-size: 1.8rem;
     height: 120px;
     width: 100%;
     margin-top: -70px;
-    right: -20;
+    right: 30;
 }
 
 .vid2-box video {
@@ -886,7 +886,7 @@ font-size: 1.8rem;
     width: 0%;
     opacity: 0;
     color: white;
-    font-size: 1em;
+    font-size: 0.9em;
     font-weight: 600;
     transition-duration: .3s;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -927,14 +927,15 @@ font-size: 1.8rem;
 /* ===== MOBILE RESPONSIVE STYLES ===== */
 @media (max-width: 768px) {
     .vid2-box {
-        height: 80px;
-         margin-top: 10px;
-        justify-content: center; 
-        position: relative;
+        height: 120px;
+         margin-top: 20px;
+        justify-content: right; 
+        position: absolute;
+        top: 60px;
     }
      .vid2-box video {
-        height: 80%;
-        max-width: 90%;
+        height: 100%;
+        max-width: 97%;
     }
      .logout-btn {
         width: 40px;
@@ -958,14 +959,14 @@ font-size: 1.8rem;
 @media (max-width: 480px) {
    
     .vid2-box {
-        height: 60px;
-        margin-top: 15px;
-        position: relative;
+        height: 120px;
+        margin-top: 7px;
+        position: absolute;
     }
     
     .vid2-box video {
-        height: 70%;
-        max-width: 85%;
+        height: 100%;
+        max-width: 100%;
     }
     .logout-btn {
         width: 35px;
