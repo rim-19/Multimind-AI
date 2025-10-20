@@ -828,13 +828,14 @@ font-size: 1.8rem;
     position: absolute;
     overflow: hidden;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: flex-start;
     background: transparent;
     height: 120px;
     width: 100%;
     margin-top: -70px;
-    right: 30;
+    left: 0; /* Ensure it starts from left */
+    padding-left: 50px; /* Add some left padding */
 }
 
 .vid2-box video {
@@ -854,12 +855,13 @@ font-size: 1.8rem;
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    position: relative;
+    position: fixed;
     overflow: hidden;
     transition-duration: .3s;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
     background-color: rgb(255, 65, 65);
     margin: 10px;
+    z-index: 1000;
 }
 
 /* Plus sign */
@@ -931,7 +933,7 @@ font-size: 1.8rem;
          margin-top: 20px;
         justify-content: right; 
         position: absolute;
-        top: 130px;
+        top: 220px;
     }
      .vid2-box video {
         height: 100%;
@@ -963,7 +965,7 @@ font-size: 1.8rem;
          margin-top: 20px;
         justify-content: right; 
         position: absolute;
-        top: 130px;
+        top: 220px;
     }
     
     .vid2-box video {
