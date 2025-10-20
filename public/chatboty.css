@@ -823,100 +823,101 @@ font-size: 1.8rem;
   background: #ffccdd;
 }
 
-/* Square Video Styles */
 .vid2-box {
     flex: 0 0 auto;
     position: absolute;
     overflow: hidden;
     display: flex;
-    align-items: right;
-    justify-content: right;
-    background: transparent; /* Remove black background */
-    height: 120px; /* Much smaller height */
+    align-items: flex-end;
+    justify-content: flex-end;
+    background: transparent;
+    height: 120px;
     width: 100%;
     margin-top: -40px;
-    margin-left: -33px;
+    right: 0;
 }
 
 .vid2-box video {
-   width: auto; /* Let video keep its aspect ratio */
-    height: 100%; /* Fill the container height */
-    object-fit: cover;/* Show entire video without cropping */
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    max-width: 100%;
 }
 
-
-
+/* Logout Button Styles */
 .logout-btn {
-  display: flex;
-  align-items: left;
-  justify-content: flex-start;
-  width: 45px;
-  height: 45px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition-duration: .3s;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-  background-color: rgb(255, 65, 65);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: rgb(255, 65, 65);
+    margin: 10px;
 }
 
-/* plus sign */
+/* Plus sign */
 .sign {
-  width: 100%;
-  transition-duration: .3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .sign svg {
-  width: 17px;
+    width: 17px;
 }
 
 .sign svg path {
-  fill: white;
+    fill: white;
 }
-/* text */
-.text {
-  position: absolute;
-  right: 0%;
-  width: 0%;
-  opacity: 0;
-  color: white;
-  font-size: 1.1em;
-  font-weight: 600;
-  transition-duration: .3s;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
+/* Text */
+.text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition-duration: .3s;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    white-space: nowrap;
 }
-/* hover effect on button width */
+
+/* Hover effect on button width */
 .logout-btn:hover {
-  width: 100px;
-  border-radius: 10px;
-  transition-duration: .3s;
+    width: 110px;
+    border-radius: 10px;
+    transition-duration: .3s;
 }
 
 .logout-btn:hover .sign {
-  width: 35%;
-  transition-duration: .3s;
-  padding-left: 20px;
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 10px;
 }
-/* hover effect button's text */
+
+/* Hover effect button's text */
 .logout-btn:hover .text {
-  opacity: 1;
-  width: 50%;
-  transition-duration: .3s;
-  padding-right: 13px;
-  padding-top: 13px;
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
 }
-/* button click effect*/
+
+/* Button click effect */
 .logout-btn:active {
-  transform: translate(2px ,2px);
+    transform: translate(2px, 2px);
 }
-
-
 
 
 
@@ -926,12 +927,59 @@ font-size: 1.8rem;
 /* ===== MOBILE RESPONSIVE STYLES ===== */
 @media (max-width: 768px) {
     .vid2-box {
-        height: 110px; /* Smaller height for mobile */
+        height: 110px;
+         margin-top: -20px;
+        justify-content: center; /* Smaller height for mobile */
+    }
+     .vid2-box video {
+        height: 80%;
+        max-width: 90%;
+    }
+     .logout-btn {
+        width: 40px;
+        height: 40px;
+        margin: 8px;
+    }
+    
+    .logout-btn:hover {
+        width: 100px;
+    }
+    
+    .text {
+        font-size: 0.8em;
+    }
+    
+    .sign svg {
+        width: 15px;
     }
 }
 @media (max-width: 480px) {
+   
     .vid2-box {
-        height: 80px; /* Even smaller for tiny screens */
+        height: 60px;
+        margin-top: -10px;
+    }
+    
+    .vid2-box video {
+        height: 70%;
+        max-width: 85%;
+    }
+    .logout-btn {
+        width: 35px;
+        height: 35px;
+        margin: 5px;
+    }
+    
+    .logout-btn:hover {
+        width: 90px;
+    }
+    
+    .text {
+        font-size: 0.75em;
+    }
+    
+    .sign svg {
+        width: 13px;
     }
 }
 @media (max-width: 768px) {
