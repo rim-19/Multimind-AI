@@ -834,7 +834,7 @@ font-size: 1.8rem;
     background: transparent; /* Remove black background */
     height: 120px; /* Much smaller height */
     width: 100%;
-    margin-top: -47px;
+    margin-top: -40px;
     margin-left: -30px;
 }
 
@@ -846,7 +846,7 @@ font-size: 1.8rem;
 
 
 
-.Btn {
+.logout-btn {
   display: flex;
   align-items: left;
   justify-content: flex-start;
