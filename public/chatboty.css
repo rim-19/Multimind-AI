@@ -835,7 +835,7 @@ font-size: 1.8rem;
     height: 120px; /* Much smaller height */
     width: 100%;
     margin-top: -47px;
-    margin-left: 0px;
+    margin-left: -30px;
 }
 
 .vid2-box video {
@@ -846,7 +846,7 @@ font-size: 1.8rem;
 
 
 
-.logout-btn {
+.Btn {
   display: flex;
   align-items: left;
   justify-content: flex-start;
@@ -885,31 +885,28 @@ font-size: 1.8rem;
   width: 0%;
   opacity: 0;
   color: white;
-  font-size: 1.1em;
+  font-size: 1.2em;
   font-weight: 600;
   transition-duration: .3s;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-
 }
 /* hover effect on button width */
 .logout-btn:hover {
-  width: 100px;
-  border-radius: 10px;
+  width: 110px;
+  border-radius: 40px;
   transition-duration: .3s;
 }
 
 .logout-btn:hover .sign {
-  width: 35%;
+  width: 30%;
   transition-duration: .3s;
   padding-left: 20px;
 }
 /* hover effect button's text */
 .logout-btn:hover .text {
   opacity: 1;
-  width: 50%;
+  width: 70%;
   transition-duration: .3s;
-  padding-right: 5px;
-  padding-top: 13px;
+  padding-right: 10px;
 }
 /* button click effect*/
 .logout-btn:active {
