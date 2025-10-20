@@ -832,7 +832,7 @@ font-size: 1.8rem;
     align-items: right;
     justify-content: right;
     background: transparent; /* Remove black background */
-    height: 100px; /* Much smaller height */
+    height: 120px; /* Much smaller height */
     width: 100%;
 }
 
@@ -848,8 +848,8 @@ font-size: 1.8rem;
   display: flex;
   align-items: left;
   justify-content: flex-start;
-  width: 45%;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -890,7 +890,7 @@ font-size: 1.8rem;
 /* hover effect on button width */
 .logout-btn:hover {
   width: 125px;
-  border-radius: 40px;
+  border-radius: 10px;
   transition-duration: .3s;
 }
 
